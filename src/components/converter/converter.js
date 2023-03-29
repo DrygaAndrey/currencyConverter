@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { CURRENCIES_CODES } from "../../api/currencyApi";
-import { calculateCurrenciesByFirstInputValue } from "./calculateCurrencies";
+import { calculateCurrencies } from "./calculateCurrencies";
 import './converter.scss';
 
 function Converter({ currencies }) {
@@ -13,25 +13,25 @@ function Converter({ currencies }) {
     }, []);
     function firstInputChange(value) {
         setFirstInput(parseFloat(value));
-        setSecondInput(calculateCurrenciesByFirstInputValue(firstCurrency, secondCurrency, value, currencies));
+        setSecondInput(calculateCurrencies(firstCurrency, secondCurrency, value, currencies).toFixed(3));
 
     }
     function secondInputChange(value) {
         setSecondInput(parseFloat(value));
-        setFirstInput(calculateCurrenciesByFirstInputValue(secondCurrency, firstCurrency, value, currencies));
+        setFirstInput(calculateCurrencies(secondCurrency, firstCurrency, value, currencies).toFixed(3));
 
     }
 
     function firstSelectChange(value) {
         setFirstCurrency(value);
 
-        setSecondInput(calculateCurrenciesByFirstInputValue(value, secondCurrency, firstInput, currencies));
+        setSecondInput(calculateCurrencies(value, secondCurrency, firstInput, currencies).toFixed(3));
 
     }
     function secondSelectChange(value) {
         setSecondCurrency(value);
 
-        setFirstInput(calculateCurrenciesByFirstInputValue(value, firstCurrency, secondInput, currencies));
+        setFirstInput(calculateCurrencies(value, firstCurrency, secondInput, currencies).toFixed(3));
 
     }
 

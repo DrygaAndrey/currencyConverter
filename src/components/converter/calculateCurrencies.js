@@ -1,6 +1,6 @@
 import { CURRENCIES_CODES } from "../../api/currencyApi";
 
-export function calculateCurrenciesByFirstInputValue(firstCurrency, secondCurrency, firstInputValue, currencies) {
+export function calculateCurrencies(firstCurrency, secondCurrency, firstInputValue, currencies) {
     let newSecondInputValue = 0;
     Object.keys(CURRENCIES_CODES).forEach(firstKey => {
         if (CURRENCIES_CODES[firstKey] === firstCurrency) {
