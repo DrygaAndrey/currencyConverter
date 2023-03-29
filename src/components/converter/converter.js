@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { CURRENCIES_CODES } from "../../api/currencyApi";
 import { calculateCurrencies } from "./calculateCurrencies";
 import './converter.scss';
@@ -8,31 +8,27 @@ function Converter({ currencies }) {
     const [secondCurrency, setSecondCurrency] = useState(CURRENCIES_CODES.UAH);
     const [firstInput, setFirstInput] = useState(0);
     const [secondInput, setSecondInput] = useState(0);
-    useEffect(() => {
 
-    }, []);
     function firstInputChange(value) {
         setFirstInput(parseFloat(value));
+        
         setSecondInput(calculateCurrencies(firstCurrency, secondCurrency, value, currencies).toFixed(3));
-
     }
     function secondInputChange(value) {
         setSecondInput(parseFloat(value));
-        setFirstInput(calculateCurrencies(secondCurrency, firstCurrency, value, currencies).toFixed(3));
 
+        setFirstInput(calculateCurrencies(secondCurrency, firstCurrency, value, currencies).toFixed(3));
     }
 
     function firstSelectChange(value) {
         setFirstCurrency(value);
 
         setSecondInput(calculateCurrencies(value, secondCurrency, firstInput, currencies).toFixed(3));
-
     }
     function secondSelectChange(value) {
         setSecondCurrency(value);
 
         setFirstInput(calculateCurrencies(value, firstCurrency, secondInput, currencies).toFixed(3));
-
     }
 
     return (
